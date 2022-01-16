@@ -6,5 +6,5 @@ interface ArtistService {
 
     fun findAllArtists(): MutableIterable<Artist>
     fun saveAllArtists(artists: MutableIterable<Artist>): MutableIterable<Artist>
-    fun searchArtists(letter: Char): MutableIterable<Artist>
+    fun searchArtists(searchArtist: String): MutableIterable<Artist>
 }

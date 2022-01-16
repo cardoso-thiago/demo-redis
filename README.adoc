@@ -1,4 +1,7 @@
-KEYS *
-KEYS "ArtistCache:*"
+= Execução da Demo
 
-https://docs.spring.io/spring-data/redis/docs/current/reference/html/#redis.repositories.queries
+* `docker run -it --name redis -p 6379:6379 redis:6.2.3`
+* `docker exec -it redis sh`
+** `redis-cli`
+*** Verificar todas as entradas de cache: `keys *`
+*** Verificar todas as entradas do ArtistCache: `keys ArtistCache:*`

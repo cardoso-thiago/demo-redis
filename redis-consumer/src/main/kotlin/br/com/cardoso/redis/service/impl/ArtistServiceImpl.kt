@@ -1,6 +1,7 @@
 package br.com.cardoso.redis.service.impl
 
 import br.com.cardoso.redis.model.Artist
+import br.com.cardoso.redis.model.SearchArtist
 import br.com.cardoso.redis.repository.ArtistRepository
 import br.com.cardoso.redis.service.ArtistService
 import org.springframework.cache.annotation.CacheEvict
@@ -16,10 +17,10 @@ class ArtistServiceImpl(private val artistRepository: ArtistRepository) : Artist
         return artistRepository.findAll()
     }
 
-    @Cacheable(cacheNames = ["ArtistCache"], key = "#letter")
-    override fun searchArtists(letter: Char): MutableIterable<Artist> {
+    @Cacheable(cacheNames = ["ArtistCache"], key = "#searchArtist")
+    override fun searchArtists(searchArtist: String): MutableIterable<Artist> {
         return artistRepository.findAll()
-            .filter { it.name.lowercase(Locale.getDefault()).startsWith(letter.lowercaseChar()) }.toMutableSet()
+            .filter { it.name.lowercase(Locale.getDefault()).contains(searchArtist.lowercase()) }.toMutableSet()
     }
 
     @CacheEvict(cacheNames = ["ArtistCache"], allEntries = true)
